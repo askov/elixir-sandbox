@@ -1,21 +1,14 @@
 defmodule Drop do
-
-  @vsn 0.1
-
-  @doc """
-  Calculates velocity of ...
-  """
-
-  import :math, only: [sqrt: 1]
-
-  @spec fall_velocity_old(number()) :: float()
-  def fall_velocity(planemo, distance) do
+  def fall_velocity(where) do
+    fall_velocity(elem(where, 0), elem(where, 1))
+  end
+  defp fall_velocity(planemo, distance) do
     gravity = case planemo do
       :earth when distance >=0 -> 9.8
       :moon  when distance >=0 -> 1.6
       :mars  when distance >=0 -> 3.71
     end
-    sqrt(2 * gravity * distance)
+    :math.sqrt(2 * gravity * distance)
   end
   # def fall_velocity_old(distance, gravity \\ 9.8) do
   #   sqrt(2 * gravity * distance)
